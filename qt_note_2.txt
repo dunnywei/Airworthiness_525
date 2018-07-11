@@ -8,4 +8,21 @@ http://zetcode.com/gui/qt5/firstprograms/
 
 Event and signal->
 http://zetcode.com/gui/qt5/eventsandsignals/
-	-
+	-Events are genearted mainly by the user of an application or others
+	-Such as internet connection, window manager, or a timer
+	-Event model
+	-Event source
+		-When object changes its states, an event is generated
+	-Event object
+		-event object encapusulate the state change in the event
+	-Event target
+		-Event target is the object that wants to be ntofied
+	-Event source object delegates the task of handing an event to the event target
+-KeyPress
+-QMoveEvent	
+-Disconnecting a signal(Skipped check later)
+-Timer(Skipped)
+
+-Signal and event qt
+ -https://stackoverflow.com/questions/3794649/qt-events-and-signal-slots
+	
