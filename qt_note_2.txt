@@ -1,0 +1,11 @@
+
+signal and slots->
+http://zetcode.com/gui/qt5/firstprograms/
+	-When we click on a button,a clicked signal is generated.
+	A slot is the method which react to the signal
+	-connect(quitBtn, &QPushButton::clicked, qApp, &QApplication::quit);
+	-good link is here->http://doc.qt.io/qt-5/signalsandslots.html
+
+Event and signal->
+http://zetcode.com/gui/qt5/eventsandsignals/
+	-
