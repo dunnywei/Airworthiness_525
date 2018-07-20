@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 size_t getline(char **lineptr, size_t *n, FILE *stream);
 
 int main() {
@@ -13,7 +15,13 @@ int main() {
 
 size_t getline(char **lineptr, size_t *n, FILE *stream)
 {
-    
+    int a=0;
+    int b=0;
+    int c=0;
+    printf("enter you number\n");
+    scanf("%d %d %d",&a,&b,&c);
+    printf("a is %d, b is %d c is %d \n",a,b,c); 
+    return -1;    
 }
 
 
