@@ -137,13 +137,15 @@ void *writer_thread(void *arg)
 int main(int argc, char **argv)
 {
   int i,j;
+  int sem_count_initial=sem_init(&data_count,0,0);
+  pthread_t temp_t;
   for(i=0;i<N;i++)
   {
-     pthread_create(NULL,NULL,reader_thread,NULL);
+     pthread_create(&temp_t,NULL,reader_thread,NULL);
   }
   
   for(j=0;j<M;j++)
   {
-     pthread_create(NULL,NULL,writer_thread,NULL);
+     pthread_create(&temp_t,NULL,writer_thread,NULL);
   }
 }
