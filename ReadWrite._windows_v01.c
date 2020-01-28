@@ -36,7 +36,7 @@ void process_data(char *buffer, int bufferSizeInBytes)
 	int i=0;
 	if(buffer!=NULL)
 	{
-		printf("@process_data with thread %li -",pthread_self());
+		printf("@process_data with thread %li - \n",pthread_self());
 		
 		while(i<bufferSizeInBytes)
 		{
@@ -45,7 +45,7 @@ void process_data(char *buffer, int bufferSizeInBytes)
 		}
 		memset(buffer,0,bufferSizeInBytes);
 	}else{
-		printf("@process_data, error occurs for buffer==NULL");
+		printf("@process_data, error occurs for buffer==NULL \n");
 	}
 	return;
 }
@@ -125,7 +125,7 @@ void *writer_thread(void *arg)
 	   
            pthread_mutex_lock(&lock_2);
 	   
-	   printf("@writer_thread, thread %ld write with buffer %s", pthread_self(), buffer);
+	   printf("@writer_thread, thread %ld write with buffer %s \n", pthread_self(), buffer);
 	    pthread_mutex_unlock(&lock_2);
    
    }
