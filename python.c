@@ -18,6 +18,9 @@ https://www.golinuxhub.com/2016/09/how-to-monitor-network-bandwidth-in.html
 ->sed command
 https://linuxconfig.org/how-to-extract-a-number-from-a-string-using-bash-example
 
+->sec conmmand csdn
+https://blog.csdn.net/lzm1340458776/article/details/44160625
+
 void counting(unsigned char input)
 {
 	int counter=0;
