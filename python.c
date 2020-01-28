@@ -15,6 +15,9 @@ https://stackoverflow.com/questions/55730428/reader-writer-problem-in-c-using-pt
 ->netperf centos 7
 https://www.golinuxhub.com/2016/09/how-to-monitor-network-bandwidth-in.html
 
+->sed command
+https://linuxconfig.org/how-to-extract-a-number-from-a-string-using-bash-example
+
 void counting(unsigned char input)
 {
 	int counter=0;
