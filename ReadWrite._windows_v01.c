@@ -13,7 +13,7 @@ typedef struct node {
 	char *data;
 	int length;
 } node_t;
-node_t head=NULL,
+node_t head=NULL;
 node_t tail=NULL;
 sem_t data_count;
 
@@ -86,11 +86,40 @@ void *writer_thread(void *arg)
 	char *buffer;
 	node_t *new_node;
 	
-	new_node-(node_t*)malloc(sizeof(node_t));
 	
    while(1)
    {
+	   buffer=(char *)malloc(sizeof(buffer)*BUFFER_SIZE);
+	   new_node=(node_t*)malloc(sizeof(node_t));
 	   
+	   length=get_external_data(buffer,BUFFER_SIZE);
+	   if(length<0)
+	   {
+	       continue;
+	   }
+	   new_node->next=NULL;
+	   new_node->length=length;
+	   new_node->data=buffer;
+	   
+	   pthread_mutex_lock(&lock_1);
+	   
+	   if(head==NULL)
+	   {
+		   head=new_node;
+		   tail=new_node;
+	   }else{
+		
+		tail->next=new_node;
+	        tail=tail->next;
+	   }
+	   
+	   pthread_mutex_unlock(&lock_1);
+	   
+           pthread_mutex_lock(&lock_2);
+	   
+	   printf("@writer_thread, thread %ld write with buffer %s", pthread_self(), buffer);
+	    pthread_mutex_unlock(&lock_2);
+   
    }
   return NULL;
 }
