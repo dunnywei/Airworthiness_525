@@ -1,3 +1,11 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+C#, VB, Perl, Swift, Prolog, Javascript, Pascal, HTML, CSS, JS
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,8 +21,8 @@ typedef struct node {
 	char *data;
 	int length;
 } node_t;
-node_t head=NULL;
-node_t tail=NULL;
+node_t *head=NULL;
+node_t *tail=NULL;
 sem_t data_count;
 
 pthread_mutex_t lock_1=PTHREAD_MUTEX_INITIALIZER;
@@ -131,11 +139,11 @@ int main(int argc, char **argv)
   int i,j;
   for(i=0;i<N;i++)
   {
-     pthread_create(NULL,NULL,reader_thread);
+     pthread_create(NULL,NULL,reader_thread,NULL);
   }
   
   for(j=0;j<M;j++)
   {
-     pthread_create(NULL,NULL,reader_thread);
+     pthread_create(NULL,NULL,writer_thread,NULL);
   }
 }
