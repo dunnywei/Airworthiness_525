@@ -12,6 +12,9 @@ https://stackoverflow.com/questions/55730428/reader-writer-problem-in-c-using-pt
 0000 00d0 &0000 0010==2
 */
 
+->netperf centos 7
+https://www.golinuxhub.com/2016/09/how-to-monitor-network-bandwidth-in.html
+
 void counting(unsigned char input)
 {
 	int counter=0;
