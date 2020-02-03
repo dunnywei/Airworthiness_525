@@ -1,17 +1,11 @@
-/******************************************************************************
 
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
-C#, VB, Perl, Swift, Prolog, Javascript, Pascal, HTML, CSS, JS
-Code, Compile, Run and Debug online from anywhere in world.
-
-*******************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <pthread.h>
 #include <semaphore.h>
+#include <fcntl.h>
 
 #define M 10
 #define N 20
@@ -27,6 +21,8 @@ sem_t data_count;
 
 pthread_mutex_t lock_1=PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t lock_2=PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t lock_3=PTHREAD_MUTEX_INITIALIZER;
+
 
 int get_external_data(char *buffer, int bufferSizeInBytes);
 void process_data(char *buffer, int bufferSizeInBytes);
@@ -51,14 +47,42 @@ void process_data(char *buffer, int bufferSizeInBytes)
 }
 int get_external_data(char *buffer, int bufferSizeInBytes)
 {
+	
 	int value=-1;
-	char temp_char[]="abcdefghijlmnopqrstu";
-	value=strlen(temp_char)+1;
-	memcpy(buffer,temp_char,value);
+	int fd;
+	#if 1
+	   char temp_char[]="abcdefghijlmnopqrstu";
+	   value=strlen(temp_char)+1;
+	   memcpy(buffer,temp_char,value);
 	
-	printf("@get_external_data, buffer is %s \n",buffer);
+	   printf("@get_external_data, buffer is %s \n",buffer);
 	
-	return value;
+	   return value;
+	#else
+		/*char temp_char[4];*/
+        char temp_char[20];
+		fd=open("/dev/xyz",O_RDWR);
+		if(fd<0){
+			printf("can't open \n");
+			return -1;
+		}
+		printf("Open ok \n");
+
+		if(read(fd,temp_char,20)<0){
+		    printf("reading error \n");
+			return -1;
+		}
+		printf("Read ok \n");
+	   value=strlen(temp_char)+1;
+
+       memcpy(buffer,temp_char,value);
+	
+	   printf("@get_external_data, buffer is %s \n",buffer);
+	   close(fd);
+	   return value;
+	
+	#endif
+	
 }
 
 void *reader_thread(void *arg)
@@ -99,12 +123,15 @@ void *writer_thread(void *arg)
    {
 	   buffer=(char *)malloc(sizeof(buffer)*BUFFER_SIZE);
 	   new_node=(node_t*)malloc(sizeof(node_t));
-	   
+	   pthread_mutex_lock(&lock_3);
+
 	   length=get_external_data(buffer,BUFFER_SIZE);
 	   if(length<0)
 	   {
 	       continue;
 	   }
+	   pthread_mutex_unlock(&lock_3);
+
 	   new_node->next=NULL;
 	   new_node->length=length;
 	   new_node->data=buffer;
