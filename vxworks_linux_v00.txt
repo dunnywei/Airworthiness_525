@@ -1,0 +1,7 @@
+1->vxWorks vs Linux
+https://blog.csdn.net/Genius_LG/article/details/12951433
+
+2->vxworks 7 and U-Boot
+https://harmonicss.co.uk/vxworks/u-boot-vxworks-7-integration/
+
+3->
