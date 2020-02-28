@@ -1,0 +1,2 @@
+1->tool like cp
+https://unix.stackexchange.com/questions/65077/is-it-possible-to-see-cp-speed-and-percent-copied
